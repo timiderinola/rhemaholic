@@ -1,7 +1,15 @@
-<header class="navbar navbar-default navbar-fixed-top navbar-inverse">
-  <div class="container">
-    <%= link_to "Rhemaholic", '#', id: "logo", class: "navbar-brand" %>
-    <nav>
+<header class="navbar navbar-default navbar-fixed-top navbar-inverse" role="navigation">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#nav-links">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <%= link_to "Rhemaholic", '#', id: "logo", class: "navbar-brand" %>
+    </div>
+    <nav class="collapse navbar-collapse" id="nav-links">
       <ul class="nav navbar-nav navbar-right">
         <li><%= link_to "Home", root_path %></li>
         <li><%= link_to "Help", help_path %></li>
