@@ -1,9 +1,21 @@
 class User < ActiveRecord::Base
+  before_save { self.email.downcase! }
+
   has_many :subscriptions, foreign_key: :follower_id, dependent: :destroy
   has_many :leaders, through: :subscriptions
 
   has_many :reverse_subscriptions, foreign_key: :leader_id, class_name: 'Subscription', dependent: :destroy
   has_many :followers, through: :reverse_subscriptions
+
+  has_secure_password
+
+  validates :name,  presence: true, length: { maximum: 50 }
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  validates :email, presence:   true,
+                    format:     { with: VALID_EMAIL_REGEX },
+                    uniqueness: { case_sensitive: false }
+  validates :password, presence: true, length: { minimum: 6 }, :on => :create
+  validates :password_confirmation, presence: true, :on => :create
 
   def following?(leader)
     leaders.include? leader
