@@ -103,7 +103,7 @@ footer ul li {
   margin-right: 10px;
 }
 
-.debug_dump {
+/*.debug_dump {
   clear: both;
   float: left;
   width: 100%;
@@ -112,7 +112,7 @@ footer ul li {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
-}
+}*/
 
 .btn {
   margin-top: 1em;
