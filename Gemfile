@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 gem 'rails', '4.1.8'
 gem 'bootstrap-sass', '3.1.1.0'
+gem 'turbolinks_transitions'
 
 group :development do
   # Use sqlite3 as the database for Active Record

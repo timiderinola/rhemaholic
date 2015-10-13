@@ -201,6 +201,8 @@ GEM
     tilt (1.4.1)
     turbolinks (2.5.3)
       coffee-rails
+    turbolinks_transitions (0.0.5)
+      coffee-rails
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
     tzinfo-data (1.2015.7)
@@ -237,5 +239,6 @@ DEPENDENCIES
   spork
   sqlite3
   turbolinks
+  turbolinks_transitions
   tzinfo-data
   uglifier (>= 1.3.0)
