@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   before_save { self.email.downcase! }
+  before_save :create_remember_token
 
   has_many :subscriptions, foreign_key: :follower_id, dependent: :destroy
   has_many :leaders, through: :subscriptions
@@ -36,4 +37,10 @@ class User < ActiveRecord::Base
   def timeline_user_ids
     leader_ids + [id]
   end
+
+  private
+  
+    def create_remember_token
+      self.remember_token = SecureRandom.urlsafe_base64
+    end
 end
