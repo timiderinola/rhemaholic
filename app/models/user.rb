@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
   validates :email, presence:   true,
                     format:     { with: VALID_EMAIL_REGEX },
                     uniqueness: { case_sensitive: false }
-  validates :password, length: { minimum: 6 }, :on => :create
+  validates :password, length: { minimum: 6 }, :on => :create, allow_blank: true
   validates :password_confirmation, presence: true, :on => :create
 
   def following?(leader)
