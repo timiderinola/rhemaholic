@@ -20,10 +20,12 @@ group :assets do
 end
 
 group :test, :development do
-  gem 'rspec-rails'
-  gem 'guard-rspec'
   gem 'guard-spork'
   gem 'spork'
+  gem 'byebug'
+  gem 'web-console'
+  gem 'colorize'
+  gem 'spring'
 end
 
 group :test do
@@ -31,10 +33,14 @@ group :test do
   gem 'factory_girl_rails'
   gem 'cucumber-rails', require: false
   gem 'database_cleaner'
+  gem 'minitest-reporters'
+  gem 'mini_backtrace'
+  gem 'guard-minitest'
 end
 
 group :production do
   gem 'pg'
+  gem 'rails_12factor'
 end
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -51,6 +57,7 @@ gem 'faker'
 gem 'bcrypt-ruby', '3.1.2'
 gem 'will_paginate'
 gem 'bootstrap-will_paginate'
+gem 'rails-html-sanitizer'
 
 # Use unicorn as the app server
 # gem 'unicorn'
