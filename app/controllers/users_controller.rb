@@ -22,7 +22,7 @@ class UsersController < ApplicationController
       redirect_to @user,
         notice: "Welcome. You're now a rhemaholic!"
     else
-      render "new"
+      render 'new'
     end
   end
 
