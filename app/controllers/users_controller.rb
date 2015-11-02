@@ -58,7 +58,7 @@ class UsersController < ApplicationController
       unless signed_in?
         store_location
         redirect_to signin_path,
-          alert: "Please sign in."
+          alert: "You need to be signed in to acces this page."
       end
     end
 
@@ -66,8 +66,8 @@ class UsersController < ApplicationController
     def correct_user
       @user = User.find(params[:id])
       unless current_user?(@user)
-        redirect_to root_path,
-          alert: "You cannot access this page."
+        redirect_to @user,
+          alert: "You have been denied acces to the page requested. Please check this instead."
       end
     end
 
