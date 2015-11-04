@@ -10,17 +10,19 @@
           <%= form_for(:session, url: sessions_path) do |f| %>
             <%= f.text_field :email, class: "form-control", placeholder: "Email", required: 'required', autofocus: 'autofocus' %>
             <%= f.password_field :password, class: "form-control", placeholder: "Password (6 characters minimum)", required: 'required', minlength: "6", maxlength: "20" %>
+            <%= f.label :remember_me, class: "checkbox inline" do %>
+              <%= f.check_box :remember_me %>
+              <span>Keep me logged in on this computer</span>
+            <% end %>
             <%= f.submit "Sign in", class: "btn btn-lg btn-primary btn-block" %>
-            <%= check_box_tag (:remember_me), class: "checkbox pull-left" %>
-            Keep me signed in
           <% end %>
           <script>
             $("form").validate();
           </script>
-          <a href="#" class="pull-right need-help">Need help? </a><span class="clearfix"></span>
+          <%= link_to "Need help?", help_path, class: "pull-right need-help" %><span class="clearfix"></span>
         </div>
       </div>
-      <%= link_to "Create an account", signup_path, class: "text-center new-account" %>
+      <p class= "text-center new-account">New user? <%= link_to "Create an account", signup_path %> now!</p>
     </div>
   </div>
 </div>
