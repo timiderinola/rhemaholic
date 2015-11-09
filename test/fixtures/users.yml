@@ -2,8 +2,12 @@ oladoyin:
   name: Oladoyin Olatooni
   email: doyin@gmail.com
   password_digest: <=% User.digest('password') %>
+  activated: true
+  activated_at: <%= Time.zone.now %>
 
 oladele:
   name: Oladele Olatooni
   email: dele@gmail.com
   password_digest: <=% User.digest('password') %>
+  activated: true
+  activated_at: <%= Time.zone.now %>

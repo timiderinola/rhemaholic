@@ -18,9 +18,9 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      sign_in @user
-      redirect_to @user,
-        notice: "Welcome. You're now a rhemaholic!"
+      @user.send_activation_email
+      redirect_to root_path, 
+        notice: "Please check your email to activate your account."
     else
       render 'new'
     end
