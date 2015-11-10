@@ -1,0 +1,22 @@
+<% provide(:title, "Forgot password") %>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6 col-md-4 col-md-offset-4">
+      <h1 class="text-center login-title">Forgot password</h1>
+      <div class="account-wall">
+        <%= image_tag "bible.png", alt: "Bible", class: "profile-img" %>
+        <div class="form-signin">
+          <%= form_for(:password_reset, url: password_resets_path) do |f| %>
+              <%= f.text_field :email, class: "form-control", placeholder: "Email", required: 'required', autofocus: 'autofocus' %>
+
+              <%= f.submit "Submit", class: "btn btn-lg btn-primary btn-block" %>
+          <% end %>
+          <script>
+              $("form").validate();
+          </script>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

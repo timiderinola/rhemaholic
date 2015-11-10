@@ -5,7 +5,7 @@ class AccountActivationsController < ApplicationController
       user.activate
       sign_in user
       redirect_to user,
-        notice: "Account activated!"
+        notice: "Account activated! Please sign in to continue."
     else
       redirect_to root_path,
         alert: "Invalid activation link!"

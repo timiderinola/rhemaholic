@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  attr_accessor :activation_token
+  attr_accessor :activation_token, :reset_token
 
   before_save { self.email.downcase! }
   before_save :create_remember_token
@@ -28,6 +28,10 @@ class User < ActiveRecord::Base
     BCrypt::Password.create(string, cost: cost)
   end
 
+  def User.new_token
+    SecureRandom.urlsafe_base64
+  end
+
   # Returns true if the given token matches the digest.
   def authenticated?(attribute, token)
     digest = send("#{attribute}_digest")
@@ -41,9 +45,21 @@ class User < ActiveRecord::Base
     update_attribute(:activated_at, Time.zone.now)
   end
 
+  # Sets the password reset attributes.
+  def create_reset_digest
+    self.reset_token = User.new_token
+    update_attribute(:reset_digest, User.digest(reset_token))
+    update_attribute(:reset_sent_at, Time.zone.now)
+  end
+
+  # Sends password reset email.
+  def send_password_reset_email
+    UserMailer.password_reset(self).deliver
+  end
+
   #Sends activation email
   def send_activation_email
-    UserMailer.account_activation(self).deliver!
+    UserMailer.account_activation(self).deliver
   end
   
   def following?(leader)
@@ -69,11 +85,11 @@ class User < ActiveRecord::Base
   private
   
     def create_remember_token
-      self.remember_token = SecureRandom.urlsafe_base64
+      self.remember_token = User.new_token
     end
 
     def create_activation_digest
-      self.activation_token = SecureRandom.urlsafe_base64
+      self.activation_token = User.new_token
       self.activation_digest = User.digest(activation_token)
     end
 end

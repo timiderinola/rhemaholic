@@ -1,11 +1,6 @@
 module SessionsHelper
 
   def sign_in(user)
-    if params[:session][:remember_me] == '1'
-      cookies.permanent[:remember_token] = user.remember_token
-    else
-      cookies[:remember_token] = user.remember_token
-    end
     self.current_user = user
   end
 
@@ -18,7 +13,7 @@ module SessionsHelper
   end
 
   def signed_in?
-    !current_user.nil?
+    !self.current_user.nil?
   end
 
   # Returns true if the given user is the current user.

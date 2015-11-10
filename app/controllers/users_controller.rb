@@ -20,7 +20,7 @@ class UsersController < ApplicationController
     if @user.save
       @user.send_activation_email
       redirect_to root_path, 
-        notice: "Please check your email to activate your account."
+        notice: "Your account has been created. Please check your email to activate your account."
     else
       render 'new'
     end
