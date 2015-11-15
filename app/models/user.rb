@@ -5,6 +5,8 @@ class User < ActiveRecord::Base
   before_save :create_remember_token
   before_create :create_activation_digest
 
+  has_many :microposts, dependent: :destroy
+
   has_many :subscriptions, foreign_key: :follower_id, dependent: :destroy
   has_many :leaders, through: :subscriptions
 
@@ -85,6 +87,11 @@ class User < ActiveRecord::Base
 
   def timeline_user_ids
     leader_ids + [id]
+  end
+
+  def feed
+  # This is preliminary. See "Following users" for the full implementation.
+    Micropost.where("user_id = ?", id)
   end
 
   private

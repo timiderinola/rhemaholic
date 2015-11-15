@@ -9,6 +9,7 @@ class UsersController < ApplicationController
   def show
     redirect_to signin_path unless signed_in?
     @user = User.find(params[:id])
+    @microposts = @user.microposts.paginate(page: params[:page])
   end
 
   def new
@@ -53,21 +54,12 @@ class UsersController < ApplicationController
       params.require(:user).permit(:name, :email, :password, :password_confirmation)
     end
 
-    #confirms a logged-in user
-    def logged_in_user
-      unless signed_in?
-        store_location
-        redirect_to signin_path,
-          alert: "You need to be signed in to acces this page."
-      end
-    end
-
     #confirms the correct user
     def correct_user
       @user = User.find(params[:id])
       unless current_user?(@user)
-        redirect_to @user,
-          alert: "You have been denied acces to the page requested. Please check this instead."
+        redirect_to request.referrer || @user,
+          alert: "We're sorry. You have been denied access to the page requested."
       end
     end
 

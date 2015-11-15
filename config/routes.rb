@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
 
   resources :users
-  resources :sessions, only: [:new, :create, :destroy]
-  resources :account_activations, only: [:edit]
-  resources :password_resets, only: [:new, :create, :edit,:update]
+  resources :sessions,              only: [:new, :create, :destroy]
+  resources :account_activations,   only: [:edit]
+  resources :password_resets,       only: [:new, :create, :edit,:update]
+  resources :microposts,            only: [:create, :destroy]
 
   root to: 'static_pages#home'
 

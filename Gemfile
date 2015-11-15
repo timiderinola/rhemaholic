@@ -54,7 +54,11 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
+
 gem 'faker'
+gem 'carrierwave'
+gem 'mini_magick'
+gem 'fog'
 gem 'bcrypt-ruby', '3.1.2'
 gem 'will_paginate'
 gem 'bootstrap-will_paginate'

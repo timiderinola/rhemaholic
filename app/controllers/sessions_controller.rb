@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
         else
           cookies[:remember_token] = user.remember_token
         end
-        redirect_back_or user
+        redirect_back_or root_url
       else
         redirect_to root_path,
           alert: "Account not acivated. Check your email for the activation link."
