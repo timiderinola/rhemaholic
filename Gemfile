@@ -42,6 +42,7 @@ group :production do
   gem 'pg'
   gem 'rails_12factor'
   gem 'unicorn'
+  gem 'net-ssh'
 end
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
