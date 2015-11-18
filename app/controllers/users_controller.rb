@@ -48,6 +48,42 @@ class UsersController < ApplicationController
       notice: "#{@user.name} has been deleted successfully."
   end
 
+  def following
+    @title = "Following"
+    @user = User.find(params[:id])
+    @users = @user.following.paginate(page: params[:page])
+    render 'show_follow'
+  end
+
+  def followers
+    @title = "Followers"
+    @user = User.find(params[:id])
+    @users = @user.followers.paginate(page: params[:page])
+    render 'show_follow'
+  end
+
+  def follow
+    @user = User.find(params[:id])
+    if current_user.follow!(@user)
+      redirect_to @user,
+                  notice: "You're now following #{@user.name}!"
+    else
+      redirect_to @user,
+                  alert: "Error following."
+    end
+  end
+
+  def unfollow
+    @user = User.find(params[:id])
+    if current_user.unfollow!(@user)
+      redirect_to @user,
+                  notice: "You stopped following #{@user.name}."
+    else
+      redirect_to @user,
+                  alert: "Error unfollowing."
+    end
+  end
+
   private
 
     def user_params

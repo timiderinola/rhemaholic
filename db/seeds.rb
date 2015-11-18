@@ -32,10 +32,25 @@ User.create!(name: "Tomilola Periola",
                activated_at: Time.zone.now)
 end
 
+#Posts
 users = User.order(:created_at).take(6)
 50.times do
   content = Faker::Lorem.sentence(5)
   users.each { |user|
     user.microposts.create!(content: content)
   }
+end
+
+#Subsriptions
+users = User.all
+user = users.first
+leaders = users[2..50]
+followers = users[2..80]
+
+followers.each do |follower|
+  follower.follow!(user)
+end
+
+leaders.each do |leader|
+  user.follow!(leader)
 end
