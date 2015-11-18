@@ -662,3 +662,16 @@ textarea {
 .stats strong {
     display: block;
 }
+
+.following {
+    color: #fff;
+    background: green;
+}
+
+.following, .unfollowed {
+    width: 12em;
+}
+
+.following:hover, .unfollowed:hover {
+
+}

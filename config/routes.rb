@@ -6,7 +6,8 @@ Rails.application.routes.draw do
 
   resources :users do
     member do
-      get :leaders, :followers
+      get 'following', as: :leaders
+      get :followers
     end
   end
 

@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :logged_in_user, only: [:index, :edit, :update, :destroy]
+  before_action :logged_in_user, only: [:index, :edit, :update, :destroy, :leaders, :followers]
   before_action :correct_user, only: [:edit, :update]
 
   def index
@@ -51,7 +51,7 @@ class UsersController < ApplicationController
   def following
     @title = "Following"
     @user = User.find(params[:id])
-    @users = @user.following.paginate(page: params[:page])
+    @users = @user.leaders.paginate(page: params[:page])
     render 'show_follow'
   end
 
@@ -64,23 +64,21 @@ class UsersController < ApplicationController
 
   def follow
     @user = User.find(params[:id])
-    if current_user.follow!(@user)
-      redirect_to @user,
-                  notice: "You're now following #{@user.name}!"
-    else
-      redirect_to @user,
-                  alert: "Error following."
+    current_user.follow!(@user)
+    respond_to do |format|
+      format.html { redirect_to @user,
+                                notice: "You are now following #{@user}" }
+      format.js
     end
   end
 
   def unfollow
     @user = User.find(params[:id])
-    if current_user.unfollow!(@user)
-      redirect_to @user,
-                  notice: "You stopped following #{@user.name}."
-    else
-      redirect_to @user,
-                  alert: "Error unfollowing."
+    current_user.unfollow!(@user)
+    respond_to do |format|
+      format.html { redirect_to @user,
+                                notice: "You stopped following #{@user}" }
+      format.js
     end
   end
 
