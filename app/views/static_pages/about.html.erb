@@ -22,4 +22,8 @@
     There is a stream of living waters in you - let if flow!
   </strong>
 </p>
-<%= link_to "Sign up now!", signup_path, class: "btn btn-large btn-primary" %>
+<% unless signed_in? %>
+    <%= link_to "Sign up now!", signup_path, class: "btn btn-large btn-primary" %>
+    <p></p>
+    <p>Already have an account? <%= link_to "Sign in.", signin_path %></p>
+<% end %>
