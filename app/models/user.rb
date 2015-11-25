@@ -83,10 +83,6 @@ class User < ActiveRecord::Base
     if leader != self && following?(leader)
       leaders.delete(leader)
     end
-  end 
-
-  def timeline_user_ids
-    leader_ids + [id]
   end
 
   def feed
