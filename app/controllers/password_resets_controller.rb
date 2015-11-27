@@ -13,7 +13,7 @@ class PasswordResetsController < ApplicationController
       redirect_to root_url,
         notice: "Please check your email for password reset instructions."
     else
-      flash.now.alert = "Email address not found."
+      flash.now.alert = "The email supplied is not associated with any account."
       render 'new'
     end
   end
@@ -24,8 +24,9 @@ class PasswordResetsController < ApplicationController
   def update
     if @user.update_attributes(user_params)
       sign_in @user
+      cookies[:remember_token] = @user.remember_token
       redirect_to @user,
-          notice: "Password has been reset. Please sign in with your new password."
+          notice: "Password has been reset successfully."
     else
       render 'edit'
     end

@@ -1,6 +1,6 @@
 <div class="well">
   <div class="form-horizontal">
-    <%= form_for(@micropost, html: {multipart: true }) do |f| %>
+    <%= form_for(@micropost, html: {multipart: true }, remote: true) do |f| %>
         <h4>What's on your heart?</h4>
         <%= render 'shared/error_messages', object: f.object %>
         <div class="form-group" style="padding:14px;">

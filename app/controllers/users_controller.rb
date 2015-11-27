@@ -34,6 +34,8 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update_attributes(user_params)
+      sign_in @user
+      cookies[:remember_token] = @user.remember_token
       redirect_to @user,
         notice: "Profile updated"
     else

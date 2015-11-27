@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   get '/signin', to: 'sessions#new', as: 'signin'
   delete '/signout', to: 'sessions#destroy', as: 'signout'
   
-  get '/help', to: 'static_pages#help'
+  # get '/help', to: 'static_pages#help'
   get '/about', to: 'static_pages#about'
   get '/contact', to: 'static_pages#contact'
   post 'follow/:id', to: 'users#follow', as: 'follow_user'

@@ -15,11 +15,16 @@ class SessionsController < ApplicationController
         redirect_back_or root_url
       else
         redirect_to root_path,
-          alert: "Account not acivated. Check your email for the activation link."
+          alert: "Your account is yet to be activated. Please check your email for the activation link."
       end
     else
-      flash.now.alert = "Invalid email/password combination."
-      render "new"
+      if user
+        flash.now.alert = "Incorrect password. Forgot password? Follow the 'Forgot password' link to set a new password."
+        render "new"
+      else
+        flash.now.alert = "The email supplied is not associated with any account."
+        render "new"
+      end
     end
   end
 

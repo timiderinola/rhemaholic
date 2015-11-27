@@ -58,7 +58,7 @@ p {
   float: left;
   margin-right: 10px;
   font-size: 1.7em;
-  color: red;
+  color: blue;
   letter-spacing: -1px;
   padding-top: 9px;
   font-weight: bold;
@@ -601,7 +601,7 @@ body.cd-overlay::after {
 }
 
 .timestamp {
-    color: lightgray;
+    color: #adadad;
     display: block;
     margin-left: 60px;
 }
@@ -675,3 +675,50 @@ textarea {
 .following:hover, .unfollowed:hover {
 
 }
+
+.new_post {
+    -webkit-animation-name: blink;
+    -moz-animation-name: blink;
+    -o-animation-name: blink;
+    animation-name: blink;
+
+    -webkit-animation-duration: 4s;
+    -moz-animation-duration: 4s;
+    -o-animation-duration: 4s;
+    animation-duration: 4s;
+
+    -webkit-animation-timing-function: linear;
+    -moz-animation-timing-function: linear;
+    -o-animation-timing-function: linear;
+    animation-timing-function: linear;
+}
+
+@-webkit-keyframes blink {
+    0%   { background: lightgrey; }
+    30%  { background: #f5f5f5 }
+    60%  { background: #ffffff; }
+    70%  { background: #f5f5f5; }
+    100% { background: inherit; }
+ }
+@-moz-keyframes blink {
+    0%   { background: lightgrey; }
+    30%  { background: #f5f5f5 }
+    60%  { background: #ffffff; }
+    70%  { background: #f5f5f5; }
+    100% { background: inherit; }
+ }
+@-o-keyframes slide {
+    0%   { background: lightgrey; }
+    30%  { background: #f5f5f5 }
+    60%  { background: #ffffff; }
+    70%  { background: #f5f5f5; }
+    100% { background: inherit; }
+}
+@keyframes slide {
+    0%   { background: lightgrey; }
+    30%  { background: #f5f5f5 }
+    60%  { background: #ffffff; }
+    70%  { background: #f5f5f5; }
+    100% { background: inherit; }
+}
+

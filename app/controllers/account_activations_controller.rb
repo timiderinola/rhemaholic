@@ -4,8 +4,9 @@ class AccountActivationsController < ApplicationController
     if user && !user.activated? && user.authenticated?(:activation, params[:id])
       user.activate
       sign_in user
+      cookies[:remember_token] = user.remember_token
       redirect_to user,
-        notice: "Account activated! Please sign in to continue."
+        notice: "Your account has been activated!"
     else
       redirect_to root_path,
         alert: "Invalid activation link!"

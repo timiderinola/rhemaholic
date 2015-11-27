@@ -4,19 +4,23 @@ class MicropostsController < ApplicationController
 
   def create
     @micropost = current_user.microposts.build(micropost_params)
-    if @micropost.save
-      redirect_to root_url,
-                  notice: "Post has been created."
-    else
-      @feed_items = []
-      render 'static_pages/home'
+    respond_to do |format|
+      if @micropost.save
+        format.html { redirect_to root_url, notice: "Post has been created." }
+        format.js
+      else
+        @feed_items = []
+        format.html { render 'static_pages/home' }
+      end
     end
   end
 
   def destroy
-    @micropost.destroy
-    redirect_to request.referrer || root_url,
-        notice: "Post has been deleted."
+    respond_to do |format|
+      @micropost.destroy
+      format.html { redirect_to request.referrer || root_url, notice: "Post has been deleted." }
+      format.js { render :layout => false }
+    end
   end
 
   private
