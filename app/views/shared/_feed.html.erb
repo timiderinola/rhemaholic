@@ -3,4 +3,8 @@
       <%= render @feed_items %>
     </ol>
     <%= will_paginate @feed_items %>
+<% else %>
+    <ol class="microposts" id="posts">
+      <li class="quiet">It's quite quiet in here. Say something now!</li>
+    </ol>
 <% end %>

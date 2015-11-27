@@ -2,4 +2,5 @@ $("<%= escape_javascript(render @micropost) %>").prependTo("#posts").addClass("n
 $("#microposts_count").html('<%= pluralize(current_user.microposts.count, "Post") %>')
 $('#new_micropost').bind('ajax:success', function(){
     $("form").trigger("reset");
+    $(".quiet").fadeOut(2000);
 })
