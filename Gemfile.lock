@@ -384,7 +384,6 @@ DEPENDENCIES
   mini_backtrace
   mini_magick
   minitest-reporters
-  net-ssh
   pg
   rails (= 4.1.8)
   rails-html-sanitizer

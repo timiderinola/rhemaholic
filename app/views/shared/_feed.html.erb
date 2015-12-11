@@ -5,6 +5,15 @@
     <%= will_paginate @feed_items %>
 <% else %>
     <ol class="microposts" id="posts">
-      <li class="quiet">It's quite quiet in here. Say something now!</li>
+      <li class="quiet">
+        <%= link_to gravatar_for(current_user, size: 50), current_user %>
+        <span class="user"><%= link_to current_user.name, current_user %></span>
+        <span class="content">It's quite quiet in here. I should say something now! I should also
+          <%= link_to ' find users', users_path %> to follow.
+        </span>
+        <span class="timestamp">
+          <%= time_ago_in_words(Time.zone.now) %> ago.
+        </span>
+      </li>
     </ol>
 <% end %>
