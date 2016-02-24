@@ -4,3 +4,6 @@ $(document).ajaxStart(function() {
 $(document).ajaxStop(function() {
     $('.load_ajax').hide();
 });
+$(document).ajaxError(function() {
+    $('#ajax-error').show();
+});
