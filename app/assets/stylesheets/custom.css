@@ -73,6 +73,28 @@ p {
   text-decoration: none;
 }
 
+.about-container {
+    max-width: 70%;
+    margin: auto;
+}
+
+.about {
+    padding: 2em;
+}
+
+@media (max-width: 770px) {
+    .about-container {
+        max-width: 99%;
+        margin: auto;
+    }
+
+    .about {
+        padding: 0.8em;
+        text-align: justify;
+        font-size: 12.5px;
+    }
+}
+
 /* footer */
 footer {
   margin-top: 45px;

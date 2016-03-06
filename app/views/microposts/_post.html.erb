@@ -33,9 +33,13 @@
           <h3>Comments</h3>
 
           <%= render @micropost.comments %>
+          <% unless signed_in? %>
+            <small><em><p>You are not signed in. <%= link_to 'Sign in', signin_path %> to make comments.</p></em></small>
+          <% end %>
         </div>
       </div>
-      <%= form_for [@micropost, @micropost.comments.build] do |f| %>
+      <% if signed_in? %>
+        <%= form_for [@micropost, @micropost.comments.build] do |f| %>
           <div class='form-group'>
             <label>Comment as <%= current_user.name %></label>
           </div>
@@ -45,6 +49,7 @@
           <div class='actions'>
             <%= f.submit 'Submit Comment', class:'btn btn-primary' %>
           </div>
+        <% end %>
       <% end %>
     </div>
     <div class="col-sm-3 ">
