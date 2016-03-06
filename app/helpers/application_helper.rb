@@ -8,4 +8,8 @@ module ApplicationHelper
       "#{page_title} | #{base_title}"
     end
   end
+
+  def friendly_date(d)
+    d.strftime("%B %e, %Y")
+  end
 end

@@ -4,10 +4,14 @@ module UsersHelper
     gravatar_id = Digest::MD5::hexdigest(user.email.downcase)
     size = options[:size]
     gravatar_url = "https://secure.gravatar.com/avatar/#{gravatar_id}.png?s=#{size}"
-    image_tag(gravatar_url, alt: user.name, class: "gravatar")
+    image_tag(gravatar_url, alt: 'Image', class: 'gravatar img img-circle')
   end
 
   def first_name user
     user.name.split(" ")[0]
+  end
+
+  def username_from_email
+    user.email.split("@")[0]
   end
 end

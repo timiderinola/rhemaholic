@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
+  mount Ckeditor::Engine => '/ckeditor'
+
   resources :sessions,              only: [:new, :create, :destroy]
   resources :account_activations,   only: [:edit]
   resources :password_resets,       only: [:new, :create, :edit,:update]
-  resources :microposts,            only: [:create, :destroy]
+  resources 'contacts', only: [:new, :create]
 
   resources :users do
     member do
@@ -11,17 +13,22 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :microposts do
+    resources :comments, :only => [:create, :destroy]
+  end
+
   root to: 'static_pages#home'
 
   get '/signup', to: 'users#new', as: 'signup'
   get '/signin', to: 'sessions#new', as: 'signin'
   delete '/signout', to: 'sessions#destroy', as: 'signout'
-  
   # get '/help', to: 'static_pages#help'
   get '/about', to: 'static_pages#about'
-  get '/contact', to: 'static_pages#contact'
+  get '/contact', to: 'contacts#new'
   post 'follow/:id', to: 'users#follow', as: 'follow_user'
   post 'unfollow/:id', to: 'users#unfollow', as: 'unfollow_user'
+
+  get '/:id', to: 'users#show', as: :slug
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

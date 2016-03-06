@@ -8,7 +8,7 @@ class UsersController < ApplicationController
 
   def show
     redirect_to signin_path unless signed_in?
-    @user = User.find(params[:id])
+    @user = User.friendly.find(params[:id])
     @microposts = @user.microposts.paginate(page: params[:page])
   end
 
@@ -28,12 +28,13 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])
+    @user = User.friendly.find(params[:id])
   end
 
   def update
-    @user = User.find(params[:id])
+    @user = User.friendly.find(params[:id])
     if @user.update_attributes(user_params)
+      @user.update_attribute(:slug, @user.username)
       sign_in @user
       cookies[:remember_token] = @user.remember_token
       redirect_to @user,
@@ -44,7 +45,7 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    @user = User.find(params[:id])
+    @user = User.friendly.find(params[:id])
     @user.destroy
     redirect_to users_path,
       notice: "#{@user.name} has been deleted successfully."
@@ -52,20 +53,20 @@ class UsersController < ApplicationController
 
   def following
     @title = "Following"
-    @user = User.find(params[:id])
+    @user = User.friendly.find(params[:id])
     @users = @user.leaders.paginate(page: params[:page])
     render 'show_follow'
   end
 
   def followers
     @title = "Followers"
-    @user = User.find(params[:id])
+    @user = User.friendly.find(params[:id])
     @users = @user.followers.paginate(page: params[:page])
     render 'show_follow'
   end
 
   def follow
-    @user = User.find(params[:id])
+    @user = User.friendly.find(params[:id])
     current_user.follow!(@user)
     respond_to do |format|
       format.html { redirect_to @user,
@@ -75,7 +76,7 @@ class UsersController < ApplicationController
   end
 
   def unfollow
-    @user = User.find(params[:id])
+    @user = User.friendly.find(params[:id])
     current_user.unfollow!(@user)
     respond_to do |format|
       format.html { redirect_to @user,
@@ -87,12 +88,16 @@ class UsersController < ApplicationController
   private
 
     def user_params
-      params.require(:user).permit(:name, :email, :password, :password_confirmation)
+      params.require(:user).permit(:name, :email, :username, :password, :password_confirmation)
     end
+
+    # def update_params
+    #   params.require(:user).permit(:name, :email, :password, :password_confirmation)
+    # end
 
     #confirms the correct user
     def correct_user
-      @user = User.find(params[:id])
+      @user = User.friendly.find(params[:id])
       unless current_user?(@user)
         redirect_to request.referrer || @user,
           alert: "We're sorry. You have been denied access to the page requested."

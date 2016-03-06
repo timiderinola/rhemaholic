@@ -1,17 +1,22 @@
-<div class="well">
-  <div class="form-horizontal">
-    <%= form_for(@micropost, html: {multipart: true }, remote: true) do |f| %>
-        <h4>What's on your heart?</h4>
-        <%= render 'shared/error_messages', object: f.object %>
-        <div class="form-group" style="padding:14px;">
-          <%= f.text_area :content, placeholder: "Write it down, make it plain...", class: "form-control" %>
-          <!--<span class="picture">-->
-            <!--<%= f.file_field :picture, accept: 'image/jpeg, image/gif, image/png', text: "Upload Image" %>-->
-          <!--</span>-->
-          <%= f.submit "Post", class: "btn btn-primary pull-right" %>
+<div>
+  <%= form_for(@micropost, html: {multipart: true }, remote: true) do |f| %>
+    <%= render 'shared/error_messages', object: f.object %>
+    <div class="form-group">
+      <div class="row">
+        <div class="col-sm-6">
+          <%= f.text_field :title, class:'form-control', placeholder:'Post title', required: true %>
         </div>
-    <% end %>
-  </div>
+        <div class="col-sm-6">
+          <%= f.select :category, options_for_select([ 'Psalm', 'Hymn', 'Song', 'Meditation', 'Prayer', 'Lesson', 'Story', 'Question' ]), prompt: 'Select a category', required: true, class:'form-control' %>
+        </div>
+      </div>
+      <%= f.cktext_area :content, :ckeditor => {language: 'en', toolbar: 'comment'}, placeholder: "Write it down, make it plain...", class: "form-control" %>
+      <!--<span class="picture">-->
+      <!--<%= f.file_field :picture, accept: 'image/jpeg, image/gif, image/png', text: "Upload Image" %>-->
+      <!--</span>-->
+      <%= f.submit "Send Post", class: "btn btn-default btn-post pull-right" %>
+    </div>
+  <% end %>
 </div>
 
 <script type="text/javascript">

@@ -1,0 +1,10 @@
+<p><%= comment.user.name %> said:</p>
+
+<blockquote class="comment">
+  <%= raw comment.content %>
+</blockquote>
+
+<% if current_user==comment.user %>
+    <%= link_to 'Remove comment', [comment.micropost, comment],
+                method: :delete, data: { confirm: 'Are you sure?' } %>
+<% end %>

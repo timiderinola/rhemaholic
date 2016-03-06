@@ -1,12 +1,10 @@
 <% @user = current_user %>
 <div class="row">
-  <aside class="col-sm-5">
+  <aside class="col-sm-5 user-panel">
     <section class="panel panel-default">
       <%= render 'shared/user_info' %>
     </section>
-    <section class="micropost_form">
-      <%= render 'shared/micropost_form' %>
-    </section>
+    <%= render 'shared/micropost_form' %>
   </aside>
   <div id="feed" class="col-sm-7">
     <%= render 'shared/feed' %>

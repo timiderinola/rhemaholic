@@ -1,8 +1,7 @@
 <% if object.errors.any? %>
   <div id="error_explanation">
-    <div class="alert alert-danger">
-      <%= pluralize(object.errors.count, "error") %>
-      prevented you from signing up:
+    <div class="alert alert-danger alert-dismissible">
+      You have <%= pluralize(object.errors.count, "error") %> on the form:
       <ul>
       <% object.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>

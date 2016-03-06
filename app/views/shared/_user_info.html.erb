@@ -5,11 +5,5 @@
   <p class="lead">
     <%= link_to current_user.name, current_user %>
   </p>
-  <p id="microposts_count">
-    <%= pluralize(current_user.microposts.count, "Post") %>
-  </p>
   <%= render 'shared/stats' %>
-  <p>
-    <img src="https://lh3.googleusercontent.com/uFp_tsTJboUY7kue5XAsGA=s28" width="28px" height="28px">
-  </p>
 </div>

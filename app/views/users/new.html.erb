@@ -9,6 +9,8 @@
       <%= f.text_field :name, class: "form-control", placeholder: "Firstname Lastname", required: 'required', pattern: ".{3,50}", autofocus: 'autofocus' %>
       <%= f.label :email %>
       <%= f.text_field :email, class: "form-control", required: 'required', placeholder: "email@example.com" %>
+      <%= f.label :username %>
+      <%= f.text_field :username, class: 'form-control', placeholder: 'A unique username', required: 'required', minlength: "2", maxlength: "20" %>
       <%= f.label :password %>
       <%= f.password_field :password, placeholder: "Password (6 characters minimum)", required: 'required', minlength: "6", maxlength: "20", class: "form-control" %>
       <%= f.label :password_confirmation, "Confirmation" %>

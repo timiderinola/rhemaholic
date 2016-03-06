@@ -5,7 +5,12 @@ class User < ActiveRecord::Base
   before_save :create_remember_token
   before_create :create_activation_digest
 
+  extend FriendlyId
+  friendly_id :username, use: :slugged
+
   has_many :microposts, dependent: :destroy
+  has_many :posts, dependent: :destroy
+  has_many :comments, dependent: :destroy
 
   has_many :subscriptions, foreign_key: :follower_id, dependent: :destroy
   has_many :leaders, through: :subscriptions
@@ -16,6 +21,7 @@ class User < ActiveRecord::Base
   has_secure_password
 
   validates :name,  presence: true, length: { maximum: 50 }
+  validates :username, presence: true, uniqueness: { case_sensitive: false }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence:   true,
                     format:     { with: VALID_EMAIL_REGEX },
@@ -88,6 +94,10 @@ class User < ActiveRecord::Base
   def feed
     Micropost.from_users_followed_by(self)
   end
+
+   def latest_posts
+     self.posts.order('created_at DESC').limit(10) if self.posts.any?
+   end
 
   private
   

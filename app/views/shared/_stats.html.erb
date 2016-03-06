@@ -1,15 +1,27 @@
-<div class="stats">
-  <a href="<%= leaders_user_path(@user) %>">
-    <strong id="leaders" class="stat">
-      <%= @user.leaders.count %>
+<div class="stats text-center">
+  <%= link_to @user do %>
+    <strong id="posts-count" class="stat">
+      <% posts_count = @user.microposts.count + @user.posts.count %>
+      <% if posts_count == 1 %>
+          <% description = 'post' %>
+      <% else %>
+          <% description = 'posts' %>
+      <% end %>
+      <%= posts_count %>
     </strong>
-    following
-  </a>
+    <%= description %>
+  <% end %>
   <a href="<%= followers_user_path(@user) %>">
     <strong id="followers" class="stat">
       <%= @user.followers.count %>
     </strong>
     followers
+  </a>
+  <a href="<%= leaders_user_path(@user) %>">
+    <strong id="leaders" class="stat">
+      <%= @user.leaders.count %>
+    </strong>
+    following
   </a>
 </div>
 <div class="alert alert-success" id="follow-alert" hidden="true">

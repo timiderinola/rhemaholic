@@ -3,6 +3,15 @@ source 'https://rubygems.org'
 gem 'rails', '4.1.8'
 gem 'bootstrap-sass', '3.1.1.0'
 gem 'turbolinks_transitions'
+gem 'mail_form'
+gem 'simple_form'
+gem 'carrierwave'
+gem 'mini_magick'
+gem 'ckeditor'
+gem 'ckeditor-imgur'
+gem 'nav_lynx'
+gem 'font-awesome-rails'
+gem 'friendly_id', '~> 5.1.0'
 
 group :development do
   # Use sqlite3 as the database for Active Record
@@ -31,7 +40,6 @@ end
 group :test do
   gem 'capybara'
   gem 'factory_girl_rails'
-  gem 'cucumber-rails', require: false
   gem 'database_cleaner'
   gem 'minitest-reporters'
   gem 'mini_backtrace'
@@ -56,9 +64,6 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'bcrypt', '~> 3.1.7'
 
 gem 'faker'
-gem 'carrierwave'
-gem 'mini_magick'
-gem 'fog'
 gem 'bcrypt-ruby', '3.1.2'
 gem 'will_paginate'
 gem 'bootstrap-will_paginate'

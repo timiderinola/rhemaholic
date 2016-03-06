@@ -5,27 +5,31 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-User.create!(name: "Timilehin Aderinola",
-            email: "timiderinola@gmail.com",
-            password: "password",
-            password_confirmation: "password",
-            admin: true,
-            activated: true,
-            activated_at: Time.zone.now)
-
-User.create!(name: "Tomilola Periola",
-            email: "tomidamilola@gmail.com",
-            password: "password",
-            password_confirmation: "password",
-            activated: true,
-            activated_at: Time.zone.now)
+# User.create!(name: "Timilehin Aderinola",
+#             email: "timiderinola@gmail.com",
+#             username: "timiderinola",
+#             password: "password",
+#             password_confirmation: "password",
+#             admin: true,
+#             activated: true,
+#             activated_at: Time.zone.now)
+#
+# User.create!(name: "Tomilola Periola",
+#             email: "tomidamilola@gmail.com",
+#             username: "tomidamilola",
+#             password: "password",
+#             password_confirmation: "password",
+#             activated: true,
+#             activated_at: Time.zone.now)
 
 99.times do |n|
   name = Faker::Name.name
-  email = "user-#{n+1}@gmail.com"
+  email = "user-#{n+2}@gmail.com"
+  username = "user#{n+2}"
   password = "password"
   User.create!(name: name,
                email: email,
+               username: username,
                password: password,
                password_confirmation: password,
                activated: true,
@@ -35,9 +39,11 @@ end
 #Posts
 users = User.order(:created_at).take(6)
 50.times do
-  content = Faker::Lorem.sentence(5)
+  title = Faker::Lorem.sentence(2)
+  content = Faker::Lorem.sentence(50)
+  category = Faker::Lorem.word
   users.each { |user|
-    user.microposts.create!(content: content)
+    user.microposts.create!(content: content, title: title, category: category)
   }
 end
 
