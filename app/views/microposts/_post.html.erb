@@ -52,17 +52,17 @@
         <% end %>
       <% end %>
     </div>
-    <div class="col-sm-3 ">
+    <div class="col-sm-3 recent-posts">
       <% if current_user?(@micropost.user) %>
-          <h4>Your Recent Posts</h4>
+          <b><h4>Your Recent Posts</h4></b>
       <% else %>
-          <h4><%= first_name(@micropost.user) %>'s Recent Posts</h4>
+          <b><h4><%= first_name(@micropost.user) %>'s Recent Posts</h4></b>
       <% end %>
         <div>
           <ul>
             <% posts = @micropost.user.microposts.order('created_at DESC').limit(7) %>
             <% posts.each do |post| %>
-                <li><%= link_to post.title, post %>, a <em><%= post.category %></em></li>
+                <b><li><%= link_to post.title, post %>, a <em><%= post.category %></em></li></b>
             <% end %>
           </ul>
         </div>

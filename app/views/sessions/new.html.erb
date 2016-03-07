@@ -3,9 +3,8 @@
 <div class="container">
   <div class="row">
     <div class="col-sm-6 col-md-4 col-md-offset-4">
-      <h2>Sign in to Rhemaholic</h2>
       <div class="account-wall">
-        <%= image_tag "bible.png", alt: "Bible", class: "profile-img" %>
+        <%= image_tag "icon.png", alt: "Logo", class: "profile-img" %>
         <div class="form-signin">
           <%= form_for(:session, url: sessions_path) do |f| %>
             <%= f.text_field :email, class: "form-control", placeholder: "Email", required: 'required', autofocus: 'autofocus' %>
