@@ -3,9 +3,9 @@
   <div class="col-md-5">
     <aside class="span4 panel panel-default">
       <section class="panel-body">
-        <h5>
+        <div class="row">
           <%= gravatar_for @user, size: 150 %>
-        </h5>
+        </div>
         <section class="stats">
           <h3 style="text-align: left;"><%= @user.name %></h3>
           <%= render 'shared/stats' %>

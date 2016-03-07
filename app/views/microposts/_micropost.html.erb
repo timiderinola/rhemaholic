@@ -1,30 +1,30 @@
 <li class="panel panel-default" id="micropost-<%= micropost.id %>">
   <div class="panel-body">
-    <span class="pull-right">
+    <div class="row">
+      <span class="pull-right">
       <% if current_user?(micropost.user) %>
           <%= link_to content_tag(:span, '', class: 'fa fa-trash-o'), micropost,    method: :delete,
                       data: { confirm: "Are you sure you want to get rid of it?" },
                       remote: true,
                       class: "delete_post",
                       title: micropost.content %>
-          <%= link_to content_tag(:span, '', class: 'fa fa-edit') , edit_micropost_path(micropost) %>
+            <%= link_to content_tag(:span, '', class: 'fa fa-edit') , edit_micropost_path(micropost) %>
       <% end %>
     </span>
-    <%= link_to gravatar_for(micropost.user, size: 50), micropost.user %>
-    <span class="user">
+      <%= link_to gravatar_for(micropost.user, size: 50), micropost.user %>
+      <span class="user">
       <% if current_user?(micropost.user) %>
         You posted a <%= micropost.category %>
       <% else %>
         <%= link_to micropost.user.name, micropost.user %> posted a <%= micropost.category %>
       <% end %>
-      <span class="timestamp">
+        <span class="timestamp">
         <%= time_ago_in_words(micropost.created_at) %> ago.
       </span>
     </span>
-    <br>
-  <span class="content text-justify">
-    <em><%= link_to micropost.title, micropost %></em>
-    <hr>
+    </div>
+  <span class="content">
+    <p><em><%= link_to micropost.title, micropost %></em></p>
     <%= micropost.content %><br>
     <span class="pull-right">
       <%= link_to micropost  do %>
