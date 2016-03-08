@@ -28,7 +28,7 @@
           </em>
           <hr>
           <div class="post-content">
-            <%= sanitize @micropost.content, tags: %w(p div h4 h5 h6 table tr td a em), attributes: %w(id class style) %>
+            <%= sanitize @micropost.content, tags: %w(p div h4 h5 h6 table tr td a em blockquote), attributes: %w(id class style) %>
           </div>
           <br id="comments-start">
 
