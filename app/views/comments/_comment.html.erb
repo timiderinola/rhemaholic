@@ -1,7 +1,7 @@
 <p><%= comment.user.name %> said:</p>
 
 <blockquote class="comment">
-  <%= raw comment.content %>
+  <%= sanitize comment.content, tags: %w(a em) %>
 </blockquote>
 
 <% if current_user==comment.user %>

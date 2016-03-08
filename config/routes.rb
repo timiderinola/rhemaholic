@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     end
   end
 
+
   resources :microposts do
     resources :comments, :only => [:create, :destroy]
   end
@@ -22,7 +23,6 @@ Rails.application.routes.draw do
   get '/signup', to: 'users#new', as: 'signup'
   get '/signin', to: 'sessions#new', as: 'signin'
   delete '/signout', to: 'sessions#destroy', as: 'signout'
-  # get '/help', to: 'static_pages#help'
   get '/about', to: 'static_pages#about'
   get '/contact', to: 'contacts#new'
   post 'follow/:id', to: 'users#follow', as: 'follow_user'
@@ -75,7 +75,7 @@ Rails.application.routes.draw do
   #   concern :toggleable do
   #     post 'toggle'
   #   end
-  #   resources :posts, concerns: :toggleable
+  #   resources :long_posts, concerns: :toggleable
   #   resources :photos, concerns: :toggleable
 
   # Example resource route within a namespace:

@@ -27,7 +27,9 @@
             </p>
           </em>
           <hr>
-          <div class="post-content"><%= raw @micropost.content %></div>
+          <div class="post-content">
+            <%= sanitize @micropost.content, tags: %w(table tr td a em), attributes: %w(id class style) %>
+          </div>
           <br id="comments-start">
 
           <h3>Comments</h3>

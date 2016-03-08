@@ -1,0 +1,2 @@
+module LongPostsHelper
+end
