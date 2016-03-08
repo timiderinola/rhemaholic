@@ -256,6 +256,14 @@ fieldset[disabled] select {
     letter-spacing: 0.4px;
 }
 
+@media (max-width: 770px) {
+    .post-panel {
+        padding: 5px;
+        line-height: 2;
+        letter-spacing: 0.4px;
+    }
+}
+
 .btn-post {
     margin: 0;
     border-radius: 15px;

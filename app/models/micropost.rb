@@ -1,6 +1,6 @@
 class Micropost < ActiveRecord::Base
   belongs_to :user
-  default_scope -> { order('created_at DESC')}
+  default_scope -> { order('updated_at DESC')}
   # mount_uploader :picture, PictureUploader
 
   validates :user_id, presence: true
