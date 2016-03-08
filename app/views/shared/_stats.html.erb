@@ -1,11 +1,11 @@
 <div class="stats text-center">
   <%= link_to @user do %>
     <strong id="posts-count" class="stat">
-      <% posts_count = @user.microposts.count + @user.posts.count %>
+      <% posts_count = @user.microposts.count %>
       <% if posts_count == 1 %>
           <% description = 'post' %>
       <% else %>
-          <% description = 'long_posts' %>
+          <% description = 'posts' %>
       <% end %>
       <%= posts_count %>
     </strong>

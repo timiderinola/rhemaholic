@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160305160133) do
+ActiveRecord::Schema.define(version: 20160308123710) do
 
   create_table "ckeditor_assets", force: true do |t|
     t.string   "data_file_name",               null: false
@@ -73,18 +73,6 @@ ActiveRecord::Schema.define(version: 20160305160133) do
 
   add_index "microposts", ["user_id", "created_at"], name: "index_microposts_on_user_id_and_created_at"
   add_index "microposts", ["user_id"], name: "index_microposts_on_user_id"
-
-  create_table "long_posts", force: true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "title"
-    t.text     "content"
-    t.integer  "user_id"
-    t.string   "type"
-    t.string   "category"
-  end
-
-  add_index "posts", ["user_id"], name: "index_posts_on_user_id"
 
   create_table "subscriptions", force: true do |t|
     t.integer  "leader_id"

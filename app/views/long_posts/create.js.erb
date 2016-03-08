@@ -1,6 +1,0 @@
-$("<%= escape_javascript(render @post) %>").prependTo("#long_posts").addClass("new_post")
-$("#microposts_count").html('<%= pluralize(current_user.posts.count, "Post") %>')
-$('#new_micropost').bind('ajax:success', function(){
-    $("form").trigger("reset");
-    $(".quiet").fadeOut(2000);
-})
