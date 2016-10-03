@@ -12,12 +12,19 @@
               <div class="row">
                 <div class="col-sm-6">
                   <div class="form-group">
-                    <%= f.label :name %>
-                    <%= f.text_field :name, required: true, class: 'form-control', placeholder: 'First and last name please' %>
+                    <% if !@user.nil? %>
+                      <%= f.label :name %>
+                      <%= f.text_field :name, required: true, class: 'form-control', placeholder: 'First and last name please', value: @user.name %>
+                      <%= f.label :email %>
+                      <%= f.email_field :email, required: true, class: 'form-control', placeholder: 'What is your email address?', value: @user.email %>
+                    <% else %>
+                      <%= f.label :name %>
+                      <%= f.text_field :name, required: true, class: 'form-control', placeholder: 'First and last name please'%>
+                      <%= f.label :email %>
+                      <%= f.email_field :email, required: true, class: 'form-control', placeholder: 'What is your email address?' %>
+                    <% end %>
                     <%= f.label :phone %>
                     <%= f.phone_field :phone, class: 'form-control', placeholder: 'What is your phone number?' %>
-                    <%= f.label :email %>
-                    <%= f.email_field :email, required: true, class: 'form-control', placeholder: 'What is your email address?' %>
                     <div class= "hidden">
                       <%= f.input :nickname, :hint => 'Leave this field blank!' %>
                     </div>
